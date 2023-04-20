@@ -1,2 +1,2 @@
 # pointcloud
-utillitzy functions for raw data manipulation
+utillity functions for raw data manipulation

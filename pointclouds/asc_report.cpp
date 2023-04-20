@@ -7,7 +7,7 @@
  * Each point cloud consists of point coordinates (x, y, z), color values (r, g, b), a classification label,
  * and normal vectors (normal_x, normal_y, normal_z). The program reads each file, processes the data,
  * and generates a report including the number of zeros, NaNs, infinite values, and the min/max values
- * for each field. The report is saved as a log file in a specified output directory.
+ * for each field.
  *
  * This code assumes the raw data are located in the "../data/raw" directory.
  * Report is saved in "../logs" directory.

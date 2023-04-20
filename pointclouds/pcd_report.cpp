@@ -82,14 +82,15 @@ void process_pcd_file(const fs::path &input_file, const fs::path &log_file_path)
 
     for (size_t i = 0; i < field_names.size(); ++i)
     {
-        log_file << "Number of zeros found in " << field_names[i] << ": " << counter_zeros[i] << std::endl;
-        log_file << "Number of NaNs found in " << field_names[i] << ": " << counter_nans[i] << std::endl;
-        log_file << "Number of infinite values found in " << field_names[i] << ": " << counter_infs[i] << std::endl;
-        if (!std::isnan(min_values[i]) && !std::isnan(max_values[i])){
-            log_file << "Min and max values for " << field_names[i] << ": " << min_values[i] << ", " << max_values[i] << std::endl;
+        log_file << "Number of zeros found in " << field_names[i] << ": " << counter_zeros[i] << '\n';
+        log_file << "Number of NaNs found in " << field_names[i] << ": " << counter_nans[i] << '\n';
+        log_file << "Number of infinite values found in " << field_names[i] << ": " << counter_infs[i] << '\n';
+        if (!std::isnan(min_values[i]) && !std::isnan(max_values[i]))
+        {
+            log_file << "Min and max values for " << field_names[i] << ": " << min_values[i] << ", " << max_values[i] << '\n';
         }
     }
-    log_file << "Done writing to file" << std::endl;
+    log_file << "Done writing to file" << '\n';
     log_file.close();
 }
 

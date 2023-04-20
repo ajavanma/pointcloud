@@ -1,3 +1,21 @@
+/**
+ * @file pcd_report.cpp
+ *
+ * @brief Process point cloud data (PCD) files and generates a report for each file for analyzing.
+ *
+ * This file contains a C++ implementation for processing .pcd files containing point cloud data.
+ * Each point cloud consists of point coordinates (x, y, z), color values (r, g, b), a classification label,
+ * and normal vectors (normal_x, normal_y, normal_z). The program reads each file, processes the data,
+ * and generates a report including the number of zeros, NaNs, infinite values, and the min/max values
+ * for each field.
+ *
+ * This code assumes the raw data are located in the "../data/raw" directory.
+ * Report is saved in "../logs" directory.
+ *
+ * @author Arash javanmardi
+ * @date 2023-04-20
+ */
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -9,6 +27,13 @@
 #include <pcl/point_types.h>
 
 namespace fs = std::filesystem;
+
+/**
+ * @brief Processes a single PCD file, generating a report with statistics.
+ *
+ * @param input_file Path to the input PCD file to be processed.
+ * @param log_file_path Path where the generated report will be saved.
+ */
 
 void process_pcd_file(const fs::path &input_file, const fs::path &log_file_path)
 {
@@ -96,7 +121,7 @@ void process_pcd_file(const fs::path &input_file, const fs::path &log_file_path)
 
 int main()
 {
-    constexpr fs::path pcd_files_path = "../data/old";
+    constexpr fs::path pcd_files_path = "../data/raw";
     constexpr fs::path output_logs_path = "../logs";
     for (const auto &entry : fs::directory_iterator(pcd_files_path))
     {

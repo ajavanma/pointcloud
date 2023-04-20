@@ -9,6 +9,9 @@
  * and generates a report including the number of zeros, NaNs, infinite values, and the min/max values
  * for each field. The report is saved as a log file in a specified output directory.
  *
+ * This code assumes the raw data are located in the "../data/raw" directory.
+ * Report is saved in "../logs" directory.
+ *
  * @author Arash javanmardi
  * @date 2023-04-20
  */

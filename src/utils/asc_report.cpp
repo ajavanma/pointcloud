@@ -100,20 +100,15 @@ void process_asc_file(const fs::path &input_file, const fs::path &log_file_path)
         Eigen::Array<bool, Eigen::Dynamic, 1> is_zero = combined_array.col(j).array() == 0.0;
         counter_zeros[j] = is_zero.count();
 
-        Eigen::Array < bool, Eigen for (size_t j = 0; j < combined_array.cols(); ++j)
-        {
-            Eigen::Array<bool, Eigen::Dynamic, 1> is_zero = combined_array.col(j).array() == 0.0;
-            counter_zeros[j] = is_zero.count();
+        Eigen::Array<bool, Eigen::Dynamic, 1> is_nan = combined_array.col(j).array().isNaN();
+        counter_nans[j] = is_nan.count();
 
-            Eigen::Array<bool, Eigen::Dynamic, 1> is_nan = combined_array.col(j).array().isNaN();
-            counter_nans[j] = is_nan.count();
+        Eigen::Array<bool, Eigen::Dynamic, 1> is_inf = combined_array.col(j).array().isInf();
+        counter_infs[j] = is_inf.count();
 
-            Eigen::Array<bool, Eigen::Dynamic, 1> is_inf = combined_array.col(j).array().isInf();
-            counter_infs[j] = is_inf.count();
-
-            min_values[j] = combined_array.col(j).minCoeff();
-            max_values[j] = combined_array.col(j).maxCoeff();
-        }
+        min_values[j] = combined_array.col(j).minCoeff();
+        max_values[j] = combined_array.col(j).maxCoeff();
+    }
 
         // Write the report to a log file
         std::ofstream log_file(log_file_path);
@@ -134,22 +129,22 @@ void process_asc_file(const fs::path &input_file, const fs::path &log_file_path)
 
         log_file << "Done writing to file" << std::endl;
         log_file.close();
-    }
+}
 
-    int main()
+int main()
+{
+    constexpr fs::path asc_files_path = "../data/old";
+    constexpr fs::path output_logs_path = "../logs";
+    for (const auto &entry : fs::directory_iterator(asc_files_path))
     {
-        constexpr fs::path asc_files_path = "../data/old";
-        constexpr fs::path output_logs_path = "../logs";
-        for (const auto &entry : fs::directory_iterator(asc_files_path))
+        if (entry.path().extension() == ".asc")
         {
-            if (entry.path().extension() == ".asc")
-            {
-                fs::path input_file = entry.path();
-                fs::path log_file_path = output_logs_path / (input_file.stem().string() + "_asc_log.log");
+            fs::path input_file = entry.path();
+            fs::path log_file_path = output_logs_path / (input_file.stem().string() + "_asc_log.log");
 
-                process_asc_file(input_file, log_file_path);
-            }
+            process_asc_file(input_file, log_file_path);
         }
-
-        return 0;
     }
+
+    return 0;
+}

@@ -133,8 +133,8 @@ void process_asc_file(const fs::path &input_file, const fs::path &log_file_path)
 
 int main()
 {
-    constexpr fs::path asc_files_path = "../data/old";
-    constexpr fs::path output_logs_path = "../logs";
+    const fs::path asc_files_path = "../data";
+    const fs::path output_logs_path = "../logs";
     for (const auto &entry : fs::directory_iterator(asc_files_path))
     {
         if (entry.path().extension() == ".asc")

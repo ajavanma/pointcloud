@@ -121,8 +121,8 @@ void process_pcd_file(const fs::path &input_file, const fs::path &log_file_path)
 
 int main()
 {
-    constexpr fs::path pcd_files_path = "../data/raw";
-    constexpr fs::path output_logs_path = "../logs";
+    constexpr fs::path pcd_files_path = "/Users/arash/Documents/github/pointclouds/data/raw";
+    constexpr fs::path output_logs_path = "/Users/arash/Documents/github/pointclouds/logs";
     for (const auto &entry : fs::directory_iterator(pcd_files_path))
     {
         if (entry.path().extension() == ".pcd")

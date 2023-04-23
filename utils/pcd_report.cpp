@@ -22,6 +22,9 @@
 #include <string>
 #include <vector>
 #include <filesystem>
+#if defined(__APPLE__)
+    #include <malloc/malloc.h>
+#endif
 #include <Eigen/Dense>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>

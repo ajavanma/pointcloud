@@ -133,17 +133,17 @@ void process_asc_file(const fs::path &input_file, const fs::path &log_file_path)
 
 int main()
 {
-    const fs::path asc_files_path = "../data";
-    const fs::path output_logs_path = "../logs";
-    for (const auto &entry : fs::directory_iterator(asc_files_path))
-    {
-        if (entry.path().extension() == ".asc")
+        const fs::path asc_files_path = "path_to_data_directory";
+        const fs::path output_logs_path = "path_to_logs_directory";
+        for (const auto &entry : fs::directory_iterator(asc_files_path))
         {
-            fs::path input_file = entry.path();
-            fs::path log_file_path = output_logs_path / (input_file.stem().string() + "_asc_log.log");
+            if (entry.path().extension() == ".asc")
+            {
+                fs::path input_file = entry.path();
+                fs::path log_file_path = output_logs_path / (input_file.stem().string() + "_asc_log.log");
 
-            process_asc_file(input_file, log_file_path);
-        }
+                process_asc_file(input_file, log_file_path);
+            }
     }
 
     return 0;
